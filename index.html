@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Caesar's Cipher</title>
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Caesar´s Cipher</h1>
+        <div class="flex text-center">
+            <div class="text-container">
+                <label for="original-text" class="text-center">Mensaje Original</label>
+                <textarea id="original-text"></textarea>
+            </div>
+            <div class="text-container">
+                <label for="cipher-text" class="text-center">Mensaje Cifrado</label>
+                <textarea id="cipher-text"></textarea>
+            </div>
+        </div> 
+    </div>
+    <div class="container text-center">
+        <label for="seed-cipher">Definir semilla</label>
+        <input type="number" name="" id="seed-cipher" placeholder="13">
+        <br>
+        <button id="cipher-btn">Cifrar/Desifrar Mensaje</button>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="caesars-cipher.js"></script>
+    <script>
+        const btnResult = document.getElementById("cipher-btn");
+        const tbMsgOriginal = document.getElementById("original-text");
+        const tbMsgEnrypt = document.getElementById("cipher-text");
+        const seedInput = document.getElementById("seed-cipher");
+
+        let solveCipher = () => {
+            let seed = seedInput.value || 13;
+            console.log(seedInput)
+            
+            if(seed < 0 || !seedInput.validity.valid) {
+                swal("Raiz Invalida", "Debes de ingresar un numero positivo", "error");
+                return;
+            }
+            const cipher = new CaesarCipher();
+            let originalText = tbMsgOriginal.value;
+            let cipherText = tbMsgEnrypt.value;
+            let result = ""
+            if(originalText.length > 0) {
+                result =  cipher.encrypt(originalText, parseInt(seed));
+                tbMsgEnrypt.value = result;
+                console.log()
+            } else if(cipherText.length > 0) {
+                result = cipher.decrypt(cipherText, parseInt(seed));
+                tbMsgOriginal.value = result;
+            } else {
+                swal("Campos vacios", "Debes llenar almenos un campo", "error");
+            }
+        }
+
+        btnResult.addEventListener("click", solveCipher);
+    </script>
+</body>
+</html>
