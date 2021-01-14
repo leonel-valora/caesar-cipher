@@ -1,19 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,800&family=Poppins&display=swap');
 body {
     padding: 0;
+    background: #e8e9ed;
 }
 h1 {
     font-size: 3rem;
-}
-h1, label {
-    text-align: center;
     font-family: 'Playfair Display', sans-serif;
+    color:  #122042;
+}
+p, label, button, input, .swal-title, .swal-text, .swal-button {
+    font-family: 'Poppins', sans-serif;
+}
+label {
+    color: #797c81;
 }
 textarea {
     font-family: 'Poppins', sans-serif;
-    min-width: 350px;
-    min-height: 200px;
-    margin: 1rem 2rem;
+    color: #122042;
+    width: 450px;
+    height: 250px;
     padding: 16px;
     border: 2px solid #ccc;
     border-radius: 8px;
@@ -24,25 +29,43 @@ textarea {
 }
 .flex {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
+}
+.text-center {
+    text-align: center;
+}
+.text-container {
+    margin-bottom: 2rem;
 }
 .text-container label {
     display: block;
 }
-#root-cipher {
-    border: none;
-    width: 2rem;
-}
+
 #cipher-btn {
+    font-size: 1rem;
     color: white;
-    font-family: 'Poppins', sans-serif;
-    padding: 8px;
+    margin: 2rem 0;
+    padding: 8px 16px;
     border: none;
     border-radius: 4px;
     background: linear-gradient(90deg,#6D6027, #c2a35c);
 }
-.center {
+#seed-cipher {
+    width: 50px;
+    border-radius: 4px;
+    border: none;
     text-align: center;
+}
+@media (max-width: 768px) {
+    .flex {
+       justify-content: center;
+    }
+}
+@media(max-width: 520px) {
+    textarea {
+        width: 300px;
+        height: 200px;
+    }
 }
